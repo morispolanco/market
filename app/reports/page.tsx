@@ -69,13 +69,122 @@ export default function Reports() {
               <CardDescription>Evaluación detallada del retorno de inversión</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col items-center justify-center py-6">
-                <FileText className="h-16 w-16 text-muted-foreground mb-4" />
-                <p className="text-center text-muted-foreground">
-                  Este informe analiza en detalle el ROI de tus campañas por plataforma y segmento.
-                </p>
-                <Button className="mt-4" variant="outline" disabled>
-                  Próximamente
+              <div className="space-y-6">
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                  <div className="p-4 border rounded-lg">
+                    <div className="text-sm font-medium text-muted-foreground mb-1">ROI Promedio</div>
+                    <div className="text-2xl font-bold">3.2x</div>
+                    <div className="text-xs text-muted-foreground">+0.5x vs mes anterior</div>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <div className="text-sm font-medium text-muted-foreground mb-1">Inversión Total</div>
+                    <div className="text-2xl font-bold">$24,500</div>
+                    <div className="text-xs text-muted-foreground">+15% vs mes anterior</div>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <div className="text-sm font-medium text-muted-foreground mb-1">Ingresos</div>
+                    <div className="text-2xl font-bold">$78,400</div>
+                    <div className="text-xs text-muted-foreground">+22% vs mes anterior</div>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <div className="text-sm font-medium text-muted-foreground mb-1">Beneficio Neto</div>
+                    <div className="text-2xl font-bold">$53,900</div>
+                    <div className="text-xs text-muted-foreground">+25% vs mes anterior</div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium mb-4">ROI por Plataforma</h3>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium">Google Ads</div>
+                        <div className="text-green-600">4.2x</div>
+                      </div>
+                      <Progress value={84} className="h-2" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium">Instagram</div>
+                        <div className="text-green-600">3.8x</div>
+                      </div>
+                      <Progress value={76} className="h-2" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium">Facebook</div>
+                        <div className="text-green-600">3.5x</div>
+                      </div>
+                      <Progress value={70} className="h-2" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium">LinkedIn</div>
+                        <div className="text-amber-600">2.4x</div>
+                      </div>
+                      <Progress value={48} className="h-2" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h3 className="text-lg font-medium mb-4">Segmentación por Industria</h3>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>Tecnología</div>
+                          <div className="text-green-600">4.5x</div>
+                        </div>
+                        <Progress value={90} className="h-2" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>E-commerce</div>
+                          <div className="text-green-600">3.8x</div>
+                        </div>
+                        <Progress value={76} className="h-2" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>Servicios</div>
+                          <div className="text-amber-600">2.9x</div>
+                        </div>
+                        <Progress value={58} className="h-2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-medium mb-4">Segmentación por Audiencia</h3>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>25-34 años</div>
+                          <div className="text-green-600">4.2x</div>
+                        </div>
+                        <Progress value={84} className="h-2" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>35-44 años</div>
+                          <div className="text-green-600">3.6x</div>
+                        </div>
+                        <Progress value={72} className="h-2" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div>45-54 años</div>
+                          <div className="text-amber-600">2.8x</div>
+                        </div>
+                        <Progress value={56} className="h-2" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Button className="w-full" asChild>
+                  <Link href="/reports/roi-analysis">Ver Análisis Completo</Link>
                 </Button>
               </div>
             </CardContent>
