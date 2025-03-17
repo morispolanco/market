@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowLeft, BarChart3, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 
 export default function Reports() {
   return (
