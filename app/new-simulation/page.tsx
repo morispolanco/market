@@ -510,96 +510,32 @@ export default function NewSimulation() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.googleAds ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("googleAds")}
-                >
-                  <div className="font-medium">Google Ads</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios en búsqueda, display y shopping</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">CPC promedio:</span> $1-3
+                {Object.entries(formData.platforms).map(([platform, isSelected]) => (
+                  <div
+                    key={platform}
+                    className={`border rounded-lg p-4 cursor-pointer transition-colors ${isSelected ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
+                    onClick={() => handlePlatformChange(platform)}
+                  >
+                    <div className="font-medium">
+                      {platform === "googleAds" ? "Google Ads" :
+                       platform === "facebook" ? "Facebook" :
+                       platform === "instagram" ? "Instagram" :
+                       platform === "linkedin" ? "LinkedIn" :
+                       platform === "tiktok" ? "TikTok" :
+                       platform === "email" ? "Email Marketing" :
+                       platform === "influencers" ? "Influencers" :
+                       platform === "youtube" ? "YouTube" :
+                       platform}
+                    </div>
                   </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.facebook ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("facebook")}
-                >
-                  <div className="font-medium">Facebook</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios en feed, stories y marketplace</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">CTR promedio:</span> 0.9%
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.instagram ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("instagram")}
-                >
-                  <div className="font-medium">Instagram</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios visuales en feed, stories y reels</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">Engagement:</span> Alto
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.linkedin ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("linkedin")}
-                >
-                  <div className="font-medium">LinkedIn</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios B2B y profesionales</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">CPC promedio:</span> $5-7
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.tiktok ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("tiktok")}
-                >
-                  <div className="font-medium">TikTok</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios en formato video corto</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">Audiencia:</span> Gen Z y Millennials
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.email ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("email")}
-                >
-                  <div className="font-medium">Email Marketing</div>
-                  <p className="text-xs text-muted-foreground mt-1">Campañas directas a suscriptores</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">ROI promedio:</span> 4.2x
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.influencers ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("influencers")}
-                >
-                  <div className="font-medium">Influencers</div>
-                  <p className="text-xs text-muted-foreground mt-1">Marketing con creadores de contenido</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">Autenticidad:</span> Alta
-                  </div>
-                </div>
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${formData.platforms.youtube ? "bg-primary/10 border-primary" : "hover:bg-muted"}`}
-                  onClick={() => handlePlatformChange("youtube")}
-                >
-                  <div className="font-medium">YouTube</div>
-                  <p className="text-xs text-muted-foreground mt-1">Anuncios en video pre-roll y mid-roll</p>
-                  <div className="text-xs mt-2">
-                    <span className="font-medium">Retención:</span> 3-4 minutos
-                  </div>
-                </div>
+                ))}
               </div>
-
-              <PlatformInfo />
-
               <div className="pt-4 flex justify-between">
                 <Button variant="outline" onClick={prevStep}>
                   Atrás
                 </Button>
                 <Button onClick={handleSubmit} disabled={isLoading}>
-                  {isLoading ? "Generando simulación..." : "Simular"}
+                  {isLoading ? "Generando..." : "Generar simulación"}
                 </Button>
               </div>
             </CardContent>
