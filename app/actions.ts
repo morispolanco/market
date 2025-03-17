@@ -234,3 +234,143 @@ export async function askMarketingQuestion(question: string, context: string) {
   }
 }
 
+
+try {
+  // Get selected platforms
+  const selectedPlatforms = Object.entries(formData.platforms)
+    .filter(([_, isSelected]) => isSelected)
+    .map(([platform]) => platform)
+
+  if (selectedPlatforms.length === 0) {
+    toast({
+      title: "Error",
+      description: "You must select at least one platform",
+      variant: "destructive",
+    })
+    setIsLoading(false)
+    return
+  }
+
+  // Show loading toast
+  toast({
+    title: "Generating simulation",
+    description: "This may take a few seconds...",
+  })
+
+  console.log("Starting simulation generation with platforms:", selectedPlatforms)
+
+  // Call Server Action to generate recommendations
+  const simulationResults = await generateMarketingRecommendations(
+    formData.category,
+    formData.budget,
+    formData.duration,
+    formData.audience,
+    selectedPlatforms,
+    formData.productDescription,
+    formData.productBenefits,
+  )
+
+  console.log("Simulation results received:", simulationResults ? "Valid data" : "Null data")
+
+  // Verify results
+  if (!simulationResults) {
+    throw new Error("Could not generate results")
+  }
+
+  // Save results in sessionStorage for access from results page
+  try {
+    const dataToStore = {
+      ...formData,
+      results: simulationResults,
+    }
+
+    sessionStorage.setItem("simulationData", JSON.stringify(dataToStore))
+    console.log("Data saved in sessionStorage")
+
+    // Show success toast
+    toast({
+      title: "Simulation completed",
+      description: "Redirecting to results...",
+    })
+
+    // Small delay to ensure data is saved before redirecting
+    setTimeout(() => {
+      router.push("/simulation-results")
+    }, 500)
+  } catch (storageError) {
+    console.error("Error saving to sessionStorage:", storageError)
+
+    // Continue even if there's a sessionStorage error
+    toast({
+      title: "Warning",
+      description: "The simulation was generated but there was a problem saving the data. Results may not display correctly.",
+      variant: "destructive",
+    })
+
+    // Try to redirect anyway
+    setTimeout(() => {
+      router.push("/simulation-results")
+    }, 500)
+  }
+} catch (error) {
+  console.error("Error generating simulation:", error)
+  toast({
+    title: "Error",
+    description: "There was a problem generating the simulation. Example data will be shown.",
+    variant: "destructive",
+  })
+
+  // Try to redirect to results with example data
+  try {
+    // Get selected platforms
+    const selectedPlatforms = Object.entries(formData.platforms)
+      .filter(([_, isSelected]) => isSelected)
+      .map(([platform]) => platform)
+
+    console.log("Generating example data for fallback")
+
+    // Generate example data
+    const fallbackData = {
+      ...formData,
+      results: await generateMarketingRecommendations(
+        formData.category,
+        formData.budget,
+        formData.duration,
+        formData.audience,
+        selectedPlatforms,
+        formData.productDescription,
+        formData.productBenefits,
+      ),
+    }
+
+    console.log("Example data generated successfully")
+
+    // Save example data
+    try {
+      sessionStorage.setItem("simulationData", JSON.stringify(fallbackData))
+      console.log("Example data saved in sessionStorage")
+
+      // Redirect to results page
+      setTimeout(() => {
+        router.push("/simulation-results")
+      }, 500)
+    } catch (storageError) {
+      console.error("Error saving example data to sessionStorage:", storageError)
+
+      // Try to redirect anyway
+      setTimeout(() => {
+        router.push("/simulation-results")
+      }, 500)
+    }
+  } catch (fallbackError) {
+    console.error("Error generating example data:", fallbackError)
+    toast({
+      title: "Critical error",
+      description: "Could not generate the simulation. Please try again later.",
+      variant: "destructive",
+    })
+  }
+} finally {
+  setIsLoading(false)
+}
+

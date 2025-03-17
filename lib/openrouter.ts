@@ -83,13 +83,12 @@ export async function getOpenRouterCompletion(
       }
 
       return content
-    } catch (parseError) {
-      console.error("Error parsing JSON response:", parseError)
-      console.error("Received response:", responseText)
-      throw new Error("Error parsing JSON response"}
+    } catch (error) {
+      console.error("Error getting OpenRouter response:", error)
+      throw error
     }
   } catch (error) {
-    console.error("Error al obtener respuesta de OpenRouter:", error)
+    console.error("Error getting OpenRouter response:", error)
     throw error
   }
 }

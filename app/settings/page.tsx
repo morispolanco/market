@@ -22,12 +22,12 @@ export default function Settings() {
   }, [])
 
   const handleSaveApiKey = () => {
-    // Guardar la API key en localStorage
+    // Save the API key in localStorage
     localStorage.setItem("openrouter_api_key", apiKey)
 
     toast({
-      title: "API Key guardada",
-      description: "Tu API Key de OpenRouter ha sido guardada correctamente",
+      title: "API Key saved",
+      description: "Your OpenRouter API Key has been saved successfully",
     })
   }
 
@@ -44,13 +44,13 @@ export default function Settings() {
               Dashboard
             </Link>
             <Link href="/simulations" className="text-sm font-medium hover:text-primary">
-              Simulaciones
+              Simulations
             </Link>
             <Link href="/reports" className="text-sm font-medium hover:text-primary">
-              Informes
+              Reports
             </Link>
             <Link href="/settings" className="text-sm font-medium hover:text-primary">
-              Configuración
+              Settings
             </Link>
           </nav>
         </div>
@@ -60,34 +60,34 @@ export default function Settings() {
           <Button variant="ghost" size="sm" asChild className="mr-4">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Volver
+              Back
             </Link>
           </Button>
-          <h1 className="text-2xl font-bold tracking-tight">Configuración</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
         </div>
 
         <Card className="max-w-2xl">
           <CardHeader>
-            <CardTitle>Configuración de API</CardTitle>
+            <CardTitle>API Configuration</CardTitle>
             <CardDescription>
-              Configura tu API Key de OpenRouter para utilizar las funciones avanzadas de MarketSim
+              Configure your OpenRouter API Key to use MarketSim's advanced features
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="api-key" className="flex items-center gap-2">
                 <Key className="h-4 w-4" />
-                API Key de OpenRouter
+                OpenRouter API Key
               </Label>
               <Input
                 id="api-key"
                 type="password"
-                placeholder="Ingresa tu API Key de OpenRouter"
+                placeholder="Enter your OpenRouter API Key"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
               />
               <p className="text-sm text-muted-foreground">
-                Puedes obtener tu API Key en{" "}
+                You can get your API Key at{" "}
                 <a
                   href="https://openrouter.ai/keys"
                   target="_blank"
@@ -101,7 +101,7 @@ export default function Settings() {
 
             <Button onClick={handleSaveApiKey} disabled={!apiKey.trim()}>
               <Save className="mr-2 h-4 w-4" />
-              Guardar API Key
+              Save API Key
             </Button>
           </CardContent>
         </Card>
