@@ -20,73 +20,73 @@ export async function getOpenRouterCompletion(
   model = "mistralai/mistral-7b-instruct:free",
 ): Promise<string> {
   try {
-    // Verificar que la API key existe
+    // Verify that the API key exists
     const apiKey = typeof window !== 'undefined' ? localStorage.getItem('openrouter_api_key') : null
     if (!apiKey) {
-      console.error("API key de OpenRouter no configurada")
-      throw new Error("API key de OpenRouter no configurada")
+      console.error("OpenRouter API key not configured")
+      throw new Error("OpenRouter API key not configured")
     }
 
-    console.log("Enviando solicitud a OpenRouter...")
+    console.log("Sending request to OpenRouter...")
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://marketsim.vercel.app", // Requerido por OpenRouter
-        "X-Title": "MarketSim", // Nombre de la aplicación
+        "HTTP-Referer": "https://marketsim.vercel.app", // Required by OpenRouter
+        "X-Title": "MarketSim", // Application name
       },
       body: JSON.stringify({
         model,
         messages,
-        max_tokens: 2000, // Limitar la longitud de la respuesta
-        temperature: 0.7, // Ajustar creatividad
-        stream: false, // No usar streaming para evitar problemas de parsing
+        max_tokens: 2000, // Limit response length
+        temperature: 0.7, // Adjust creativity
+        stream: false, // Don't use streaming to avoid parsing issues
       }),
     })
 
-    // Verificar si la respuesta es exitosa
+    // Verify if the response is successful
     if (!response.ok) {
       const errorText = await response.text()
-      console.error("Error en la respuesta de OpenRouter:", errorText)
-      throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
+      console.error("Error in OpenRouter response:", errorText)
+      throw new Error(`API Error: ${response.status} ${response.statusText}`)
     }
 
-    // Intentar obtener el texto de la respuesta
+    // Try to get the response text
     const responseText = await response.text()
 
-    // Verificar que la respuesta no está vacía
+    // Verify that the response is not empty
     if (!responseText || responseText.trim() === "") {
-      console.error("La respuesta de OpenRouter está vacía")
-      throw new Error("La respuesta de OpenRouter está vacía")
+      console.error("OpenRouter response is empty")
+      throw new Error("OpenRouter response is empty")
     }
 
-    console.log("Respuesta recibida de OpenRouter (primeros 100 caracteres):", responseText.substring(0, 100))
+    console.log("Response received from OpenRouter (first 100 characters):", responseText.substring(0, 100))
 
-    // Intentar parsear la respuesta como JSON
+    // Try to parse the response as JSON
     try {
       const data = JSON.parse(responseText) as OpenRouterResponse
 
-      // Verificar que la estructura de la respuesta es correcta
+      // Verify that the response structure is correct
       if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        console.error("Estructura de respuesta inesperada:", data)
-        throw new Error("Estructura de respuesta inesperada")
+        console.error("Unexpected response structure:", data)
+        throw new Error("Unexpected response structure")
       }
 
       const content = data.choices[0].message.content
 
-      // Verificar que el contenido no está vacío
+      // Verify that the content is not empty
       if (!content || content.trim() === "") {
-        console.error("El contenido de la respuesta está vacío")
-        throw new Error("El contenido de la respuesta está vacío")
+        console.error("Response content is empty")
+        throw new Error("Response content is empty")
       }
 
       return content
     } catch (parseError) {
-      console.error("Error al parsear la respuesta JSON:", parseError)
-      console.error("Respuesta recibida:", responseText)
-      throw new Error("Error al parsear la respuesta JSON")
+      console.error("Error parsing JSON response:", parseError)
+      console.error("Received response:", responseText)
+      throw new Error("Error parsing JSON response"}
     }
   } catch (error) {
     console.error("Error al obtener respuesta de OpenRouter:", error)
