@@ -17,21 +17,21 @@ export default function Home() {
               Dashboard
             </Link>
             <Link href="/simulations" className="text-sm font-medium hover:text-primary">
-              Simulaciones
+              Simulations
             </Link>
             <Link href="/reports" className="text-sm font-medium hover:text-primary">
-              Informes
+              Reports
             </Link>
             <Link href="/settings" className="text-sm font-medium hover:text-primary">
-              Configuración
+              Settings
             </Link>
           </nav>
           <div className="flex items-center gap-4">
             <Button variant="outline" size="sm" asChild>
-              <Link href="/settings">Configurar API</Link>
+              <Link href="/settings">Configure API</Link>
             </Button>
             <Button size="sm" asChild>
-              <Link href="/new-simulation">Nueva Simulación</Link>
+              <Link href="/new-simulation">New Simulation</Link>
             </Button>
           </div>
         </div>
@@ -40,49 +40,49 @@ export default function Home() {
         <div className="grid gap-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Bienvenido a MarketSim</h1>
-              <p className="text-muted-foreground">Simula, analiza y optimiza tus estrategias de marketing digital</p>
+              <h1 className="text-3xl font-bold tracking-tight">Welcome to MarketSim</h1>
+              <p className="text-muted-foreground">Simulate, analyze and optimize your digital marketing strategies</p>
             </div>
             <Button asChild>
-              <Link href="/new-simulation">Nueva Simulación</Link>
+              <Link href="/new-simulation">New Simulation</Link>
             </Button>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Simulaciones Totales</CardTitle>
+                <CardTitle className="text-sm font-medium">Total Simulations</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12</div>
-                <p className="text-xs text-muted-foreground">+2 desde el último mes</p>
+                <p className="text-xs text-muted-foreground">+2 since last month</p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Presupuesto Simulado</CardTitle>
+                <CardTitle className="text-sm font-medium">Simulated Budget</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$24,500</div>
-                <p className="text-xs text-muted-foreground">+15% desde el último mes</p>
+                <p className="text-xs text-muted-foreground">+15% since last month</p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">ROI Promedio</CardTitle>
+                <CardTitle className="text-sm font-medium">Average ROI</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">3.2x</div>
-                <p className="text-xs text-muted-foreground">+0.5x desde el último mes</p>
+                <p className="text-xs text-muted-foreground">+0.5x since last month</p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Plataformas Analizadas</CardTitle>
+                <CardTitle className="text-sm font-medium">Analyzed Platforms</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">8</div>
-                <p className="text-xs text-muted-foreground">+2 desde el último mes</p>
+                <p className="text-xs text-muted-foreground">+2 since last month</p>
               </CardContent>
             </Card>
           </div>
@@ -90,43 +90,43 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card className="col-span-full lg:col-span-2">
               <CardHeader>
-                <CardTitle>Simulaciones Recientes</CardTitle>
-                <CardDescription>Tus últimas 5 simulaciones de marketing digital</CardDescription>
+                <CardTitle>Recent Simulations</CardTitle>
+                <CardDescription>Your last 5 digital marketing simulations</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="grid grid-cols-4 text-sm font-medium text-muted-foreground">
-                    <div>Nombre</div>
-                    <div>Presupuesto</div>
-                    <div>Plataformas</div>
-                    <div>ROI Est.</div>
+                    <div>Name</div>
+                    <div>Budget</div>
+                    <div>Platforms</div>
+                    <div>Est. ROI</div>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4 text-sm">
-                    <div className="font-medium">Campaña Q2 2024</div>
+                    <div className="font-medium">Q2 2024 Campaign</div>
                     <div>$5,000</div>
                     <div>4</div>
                     <div className="font-medium text-green-600">3.8x</div>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4 text-sm">
-                    <div className="font-medium">Lanzamiento Producto</div>
+                    <div className="font-medium">Product Launch</div>
                     <div>$8,500</div>
                     <div>5</div>
                     <div className="font-medium text-green-600">2.9x</div>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4 text-sm">
-                    <div className="font-medium">Campaña Navidad</div>
+                    <div className="font-medium">Christmas Campaign</div>
                     <div>$4,200</div>
                     <div>3</div>
                     <div className="font-medium text-green-600">4.1x</div>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4 text-sm">
-                    <div className="font-medium">Promoción Verano</div>
+                    <div className="font-medium">Summer Promotion</div>
                     <div>$3,800</div>
                     <div>3</div>
                     <div className="font-medium text-green-600">3.5x</div>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4 text-sm">
-                    <div className="font-medium">Webinar Tech</div>
+                    <div className="font-medium">Tech Webinar</div>
                     <div>$3,000</div>
                     <div>2</div>
                     <div className="font-medium text-amber-600">2.1x</div>
@@ -136,8 +136,8 @@ export default function Home() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Plataformas Recomendadas</CardTitle>
-                <CardDescription>Basado en tus simulaciones anteriores</CardDescription>
+                <CardTitle>Recommended Platforms</CardTitle>
+                <CardDescription>Based on your previous simulations</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
