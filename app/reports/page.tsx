@@ -56,8 +56,8 @@ export default function Reports() {
                 <p className="text-center text-muted-foreground">
                   Este informe muestra el rendimiento comparativo de todas tus simulaciones de marketing.
                 </p>
-                <Button className="mt-4" variant="outline" disabled>
-                  Próximamente
+                <Button className="w-full" asChild>
+                  <Link href="/reports/roi-analysis">Ver Análisis Completo</Link>
                 </Button>
               </div>
             </CardContent>
@@ -201,8 +201,8 @@ export default function Reports() {
                 <p className="text-center text-muted-foreground">
                   Este informe identifica tendencias emergentes y oportunidades en el mercado digital.
                 </p>
-                <Button className="mt-4" variant="outline" disabled>
-                  Próximamente
+                <Button className="w-full" asChild>
+                  <Link href="/reports/roi-analysis">Ver Análisis Completo</Link>
                 </Button>
               </div>
             </CardContent>
