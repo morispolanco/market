@@ -414,16 +414,16 @@ export default function NewSimulation() {
                 </div>
                 <Slider
                   id="budget"
-                  min={1000}
-                  max={50000}
-                  step={500}
+                  min={100}
+                  max={1000}
+                  step={50}
                   value={[formData.budget]}
                   onValueChange={(value) => handleChange("budget", value[0])}
                   className="py-4"
                 />
                 <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>$100</span>
                   <span>$1,000</span>
-                  <span>$50,000</span>
                 </div>
               </div>
 
@@ -434,16 +434,16 @@ export default function NewSimulation() {
                 </div>
                 <Slider
                   id="duration"
-                  min={7}
-                  max={90}
+                  min={2}
+                  max={30}
                   step={1}
                   value={[formData.duration]}
                   onValueChange={(value) => handleChange("duration", value[0])}
                   className="py-4"
                 />
                 <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>7 días</span>
-                  <span>90 días</span>
+                  <span>2 días</span>
+                  <span>30 días</span>
                 </div>
               </div>
 
